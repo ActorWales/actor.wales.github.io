@@ -1,0 +1,37 @@
+# Actor Wales
+
+> High-level developer crafting elegant solutions to complex problems.
+> Expert in software architecture, performance optimization, and secure coding.
+
+## About
+
+Actor is an innovative, professional, and exceptional developer based in Wales, specializing in pushing the boundaries of what's possible in software development.
+
+Core focus areas:
+- Software Architecture
+- Performance Optimization
+- Web Security
+- Precision Coding
+- Scalability
+- Problem Solving
+
+## Core Principles
+
+### Code is Poetry
+Every line written with intention. Clean, maintainable, and elegant solutions that stand the test of time and scale.
+
+### Privacy First
+Anonymity enables focus on what truly matters: the craft, the code, and the impact of the work itself.
+
+### Excellence Only
+No compromises on quality. From architecture to deployment, every decision optimized for performance and reliability.
+
+## Contact
+
+- Website: https://www.actor.wales
+- Email: contact@actor.wales
+
+## Resources
+
+- Main Website: https://www.actor.wales
+- Logo: https://www.actor.wales/img/actor_logo_01-medium.png
