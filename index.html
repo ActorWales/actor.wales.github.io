@@ -1,1 +1,483 @@
-Actor: Hello!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actor — Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #E63946;
+            --secondary: #F4A261;
+            --accent: #2A9D8F;
+            --dark: #1D1E2C;
+            --darker: #141520;
+            --light: #F1FAEE;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(230, 57, 70, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(42, 157, 143, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .logo img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 10px 40px rgba(230, 57, 70, 0.3));
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--light);
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .description {
+            max-width: 600px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--light);
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        /* Skills Grid */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(42, 157, 143, 0.2);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 0.75rem;
+        }
+
+        .skill-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .skill-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        /* Principles Section */
+        .principles {
+            margin-top: 6rem;
+            padding: 4rem 0;
+            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .principle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .principle-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .principle-card:nth-child(2) {
+            border-left-color: var(--secondary);
+        }
+
+        .principle-card:nth-child(3) {
+            border-left-color: var(--primary);
+        }
+
+        .principle-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+        }
+
+        .principle-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .principle-text {
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 6rem 0 4rem;
+            animation: fadeInUp 0.8s ease-out 1s backwards;
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .contact-link {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.3);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.1;
+            pointer-events: none;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .floating-1 {
+            background: var(--primary);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-2 {
+            background: var(--accent);
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 7s;
+        }
+
+        .floating-3 {
+            background: var(--secondary);
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo img {
+                max-width: 300px;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .skills {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-element floating-1"></div>
+    <div class="floating-element floating-2"></div>
+    <div class="floating-element floating-3"></div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="logo">
+                <img src="img/actor_logo_01-medium.png" alt="Actor">
+            </div>
+            <div class="tagline">Innovative. Professional. Exceptional.</div>
+            <div class="description">
+                High-level developer crafting elegant solutions to complex problems.
+                Specializing in architecture, performance, and pushing the boundaries of what's possible.
+            </div>
+
+            <div class="skills">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#E63946;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#2A9D8F;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="skill-name">Performance</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 21h18M4 21V10l8-7 8 7v11M9 21v-6h6v6M12 3v3" stroke="url(#grad2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#2A9D8F;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#F4A261;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="skill-name">Architecture</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="11" width="18" height="11" rx="2" stroke="url(#grad3)" stroke-width="2"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4" stroke="url(#grad3)" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="12" cy="16" r="1.5" fill="url(#grad3)"/>
+                            <defs>
+                                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#F4A261;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#E63946;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="skill-name">Security</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="url(#grad4)" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="6" stroke="url(#grad4)" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="2" fill="url(#grad4)"/>
+                            <line x1="12" y1="2" x2="12" y2="4" stroke="url(#grad4)" stroke-width="2"/>
+                            <line x1="12" y1="20" x2="12" y2="22" stroke="url(#grad4)" stroke-width="2"/>
+                            <line x1="2" y1="12" x2="4" y2="12" stroke="url(#grad4)" stroke-width="2"/>
+                            <line x1="20" y1="12" x2="22" y2="12" stroke="url(#grad4)" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#E63946;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#2A9D8F;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="skill-name">Precision</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2v6M12 22v-6M5.64 5.64l4.24 4.24M14.12 14.12l4.24 4.24M2 12h6M22 12h-6M5.64 18.36l4.24-4.24M14.12 9.88l4.24-4.24" stroke="url(#grad5)" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="12" cy="12" r="3" stroke="url(#grad5)" stroke-width="2" fill="none"/>
+                            <defs>
+                                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#2A9D8F;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#F4A261;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="skill-name">Scalability</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.5 2L4 7.5L9.5 13M14.5 11L20 16.5L14.5 22" stroke="url(#grad6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 7.5h8c3.5 0 6 2.5 6 6v3" stroke="url(#grad6)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#F4A261;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#E63946;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="skill-name">Problem Solving</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles">
+        <div class="container">
+            <h2 class="section-title">Core Principles</h2>
+            <div class="principle-grid">
+                <div class="principle-card">
+                    <h3 class="principle-title">Code is Poetry</h3>
+                    <p class="principle-text">
+                        Every line written with intention. Clean, maintainable, and elegant solutions
+                        that stand the test of time and scale.
+                    </p>
+                </div>
+                <div class="principle-card">
+                    <h3 class="principle-title">Privacy First</h3>
+                    <p class="principle-text">
+                        Anonymity enables focus on what truly matters: the craft, the code,
+                        and the impact of the work itself.
+                    </p>
+                </div>
+                <div class="principle-card">
+                    <h3 class="principle-title">Excellence Only</h3>
+                    <p class="principle-text">
+                        No compromises on quality. From architecture to deployment,
+                        every decision optimized for performance and reliability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <p class="contact-text">Interested in collaboration?</p>
+            <a href="mailto:contact@actor.wales" class="contact-link">Get in Touch</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            © 2025 Actor. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
